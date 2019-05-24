@@ -83,10 +83,26 @@ public class _03_TestLambda_4Interface {
     @Test
     public void test_consumer(){
         consum(100, (m) -> System.out.println("消费了 ->" + m));
+
+
+
+    }
+
+    // 连贯消费
+    @Test
+    public void test_consumerAndThen(){
+        Consumer<Double> consumer1 = ((m) -> System.out.println("consume1 " + m));
+        Consumer<Double> consumer2 = ((m) -> System.out.println("consume2 " + m));
+        consumer1.andThen(consumer2).accept(100.0);
     }
 
     public void consum(double money, Consumer<Double> consumer){
         consumer.accept(money); // void accept(T t);
     }
+
+
+
+
+
 
 }
